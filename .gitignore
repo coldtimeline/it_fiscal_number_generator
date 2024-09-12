@@ -16,3 +16,6 @@ Thumbs.db
 # Escludi configurazioni specifiche dell'editor
 .vscode/
 .idea/
+
+#escludi pytest cache
+.pytest_cache/

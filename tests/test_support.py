@@ -1,4 +1,4 @@
-from it_fiscal_number_generator.src.support_functions import digit_or_special_present
+from src.support_functions import digit_or_special_present
 
 def test_digit_or_special_present():
     """
@@ -13,4 +13,4 @@ def test_digit_or_special_present():
     assert digit_or_special_present("ciao1") == True #string with digits
     assert digit_or_special_present("ciao!") == True #string with punctation
     assert digit_or_special_present("") == False #empty string
-    assert digit_or_special_present(" ") == False #string with spaces
+    assert digit_or_special_present(" ") == False #string with spacesv
