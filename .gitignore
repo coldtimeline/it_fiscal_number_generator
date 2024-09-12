@@ -1,0 +1,18 @@
+# Escludi l'ambiente virtuale
+venv/
+
+# Escludi file di log
+*.log
+
+# Escludi i file di cache di Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Escludi file creati da sistemi operativi
+.DS_Store
+Thumbs.db
+
+# Escludi configurazioni specifiche dell'editor
+.vscode/
+.idea/
