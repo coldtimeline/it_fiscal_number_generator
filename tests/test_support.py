@@ -1,6 +1,5 @@
 from it_fiscal_number_generator.src.support_functions import digit_or_special_present
 
-
 def test_digit_or_special_present():
     """
     This tests that the test_digit_or_special_present function 
