@@ -22,3 +22,5 @@ def digit_or_special_present(input_string):
 
     # If no digits or special characters are found, return False
     return False
+
+print(digit_or_special_present("ciao"))

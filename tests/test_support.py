@@ -1,4 +1,4 @@
-from modules.support_functions import digit_or_special_present
+from it_fiscal_number_generator.src.support_functions import digit_or_special_present
 
 
 def test_digit_or_special_present():
