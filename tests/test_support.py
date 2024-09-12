@@ -1,4 +1,4 @@
-from modules.generate_functions import digit_or_special_present
+from modules.support_functions import digit_or_special_present
 
 
 def test_digit_or_special_present():
