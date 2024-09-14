@@ -1,4 +1,11 @@
+import sys
+import os
 import string
+
+#add path to import modules
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
+
+from src.support_functions import odd_position_to_number,even_position_to_number
 
 def generate_day_gender_code(gender, day_of_birth):
     """
@@ -167,3 +174,50 @@ def generate_month_char(month):
 
     # Return the corresponding character
     return number_char_map[month]
+
+def generate_last_characther(input_code):
+    """
+    This function take the string of uncompleted code and return the last character
+    that must be added to the code to complete it, based on rules
+    from Agenzia dell'Entrate
+
+    Parameters:
+    input_code (str): the string of uncompleted code
+
+    Returns:
+    char: the new last character of the code
+
+    Raises:
+    ValueError: If the input code length is different from 15 characters
+    """
+
+    if input_code == "":
+        raise ValueError("Input code cannot be empty")
+    if len(input_code) != 15:
+        raise ValueError("Input code must have 15 characters")
+
+   
+    input_code_even = ""
+    input_code_odd = ""
+    odd_position_sum=0
+    even_position_sum=0
+
+
+    # Dividing the string in odd and even position, using string slicing
+    # Agenzia delle entrate consider the first character as in a odd position
+    input_code_even = input_code[1::2]
+    input_code_odd = input_code[::2]
+
+
+    for char in input_code_odd:
+        odd_position_sum += odd_position_to_number(char)
+
+    for char in input_code_even:
+        even_position_sum += even_position_to_number(char)
+
+
+    total_sum = odd_position_sum + even_position_sum
+    last_digit_number = total_sum % 26
+    last_digit_char = chr(last_digit_number + 65)
+
+    return last_digit_char

@@ -7,7 +7,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 
 from src.support_functions import divide_vowels_consonants
 from src.generate_functions import generate_day_gender_code, generate_name_code, generate_surname_code
-from src.generate_functions import generate_month_char
+from src.generate_functions import generate_month_char, generate_last_characther
 
 def test_generate_day_gender_code():
     """
@@ -85,3 +85,15 @@ def test_generate_month_char():
     assert generate_month_char(4) == 'D'
     assert generate_month_char(8) == 'M'
     assert generate_month_char(12) == 'T'
+
+def test_generate_last_characther():
+    """ 
+    Test the generate last character function.
+    GIVEN: a string with length 15
+    WHEN: the function is called with a 15 length string
+    THEN: the function a char according to the roules
+    """
+    assert generate_last_characther("GSTMGV78T03A944") == "T"
+    assert generate_last_characther("LTZCST80A41G712") == "C"
+    assert generate_last_characther("PPPGNN80A42B602") == "G"
+    assert generate_last_characther("XIXTIX85H01E438") == "N"
