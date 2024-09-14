@@ -5,8 +5,8 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 
 
-
-from src.generate_functions import generate_day_gender_code, generate_name_code
+from src.support_functions import divide_vowels_consonants
+from src.generate_functions import generate_day_gender_code, generate_name_code, generate_surname_code
 
 def test_generate_day_gender_code():
     """
@@ -37,3 +37,28 @@ def test_generate_name_code():
     assert generate_name_code("AEI", "") == "AEI"  # Zero consonants and three vowel
     assert generate_name_code("AE", "") == "AEX"  # Zero consonants and two vowel
     assert generate_name_code("U", "") == "UXX"  # Zero consonants and one vowel
+
+    
+
+def test_generate_surname_code():
+    """ 
+    Test the generate_surname_code function.
+    GIVEN: two string representing vowels and consonats of a word, respectively
+    WHEN: the function is called with two string, one of vowels and one of consonants
+    THEN: the function returns a three char string of the surname according to the rules
+    """
+    assert generate_surname_code("", "BLTKJ") == "BLT"  # Lot of consonants
+    assert generate_surname_code("AE", "BLTKJ") == "BLT"  # Lot of consonants
+    assert generate_surname_code("", "BLT") == "BLT"  # Three consonants
+    assert generate_surname_code("AE", "BL") == "BLA"  # Two consonants and one vowel
+    assert generate_surname_code("", "BL") == "BLX"  # Two consonants and no vowels
+    assert generate_surname_code("AE", "B") == "BAE"  # One consonants and two vowel
+    assert generate_surname_code("AEUI", "B") == "BAE"  # One consonants and more vowel
+    assert generate_surname_code("A", "B") == "BAX"  # One consonants and one vowel
+    assert generate_surname_code("", "B") == "BXX"  # One consonants and zero vowel
+    assert generate_surname_code("AEI", "") == "AEI"  # Zero consonants and three vowel
+    assert generate_surname_code("AEI", "") == "AEI"  # lots of vowel
+    assert generate_surname_code("AE", "") == "AEX"  # Zero consonants and two vowel
+    assert generate_surname_code("U", "") == "UXX"  # Zero consonants and one vowel
+    assert generate_surname_code("", "") == "XXX"  # Zero consonants and zero vowel
+    assert generate_surname_code(divide_vowels_consonants("Rocchini")[0], divide_vowels_consonants("Rocchini")[1]) == "RCC"
