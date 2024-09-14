@@ -229,3 +229,44 @@ def last_two_digits(number):
         last_two_digits = '0' + last_two_digits
 
     return last_two_digits
+
+
+def even_position_to_number(char):
+    """
+    This function take a char which must be an upper character or a digit and
+    returns a value according to agenzia delle entrate rules, for even positioned
+    characters or digits
+
+    Parameters:
+    char (char): the char to convert
+
+    Returns:
+    int: the converted value
+
+    Raises:
+    ValueError: If the input character is not present.
+    """
+
+    # Dictionary mapping numbers to characters
+    even_position_to_number_map = {
+        "A": 0, "0": 0,
+        "B": 1, "1": 1,
+        "C": 2, "2": 2,
+        "D": 3, "3": 3,
+        "E": 4, "4": 4,
+        "F": 5, "5": 5,
+        "G": 6, "6": 6,
+        "H": 7, "7": 7,
+        "I": 8, "8": 8,
+        "J": 9, "9": 9,
+        "K":10, "L":11, "M":12, "N":13, "O":14, "P":15, "Q":16, "R":17, "S":18, "T":19,
+        "U":20, "V":21, "W":22, "X":23, "Y":24, "Z":25
+
+    }
+
+    # Check if the character is in the map
+    if char not in even_position_to_number_map:
+        raise ValueError("Invalid character present")
+
+    # Return the corresponding value
+    return even_position_to_number_map[char]

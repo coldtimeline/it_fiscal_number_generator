@@ -8,7 +8,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 
 from src.support_functions import digit_or_special_present, is_empty_or_only_space, is_vowel
 from src.support_functions import divide_vowels_consonants, is_name_ok, is_surname_ok, is_gender_ok
-from src.support_functions import is_place_of_birth_ok, gender_to_boolean, last_two_digits
+from src.support_functions import is_place_of_birth_ok, gender_to_boolean, last_two_digits, even_position_to_number
 
 def test_digit_or_special_present():
     """
@@ -155,3 +155,33 @@ def test_last_two_digits():
     assert last_two_digits(5) == '05'
     assert last_two_digits(0) == '00'
     assert last_two_digits(2000) == '00'
+
+
+def test_even_position_to_number():
+    assert even_position_to_number("A") == 0
+    assert even_position_to_number("B") == 1
+    assert even_position_to_number("C") == 2
+    assert even_position_to_number("D") == 3
+    assert even_position_to_number("E") == 4
+    assert even_position_to_number("F") == 5
+    assert even_position_to_number("G") == 6
+    assert even_position_to_number("H") == 7
+    assert even_position_to_number("I") == 8
+    assert even_position_to_number("J") == 9
+    assert even_position_to_number("K") == 10
+    assert even_position_to_number("L") == 11
+    assert even_position_to_number("M") == 12
+    assert even_position_to_number("N") == 13
+    assert even_position_to_number("O") == 14
+    assert even_position_to_number("P") == 15
+    assert even_position_to_number("Q") == 16
+    assert even_position_to_number("R") == 17
+    assert even_position_to_number("S") == 18
+    assert even_position_to_number("T") == 19
+    assert even_position_to_number("U") == 20
+    assert even_position_to_number("V") == 21
+    assert even_position_to_number("W") == 22
+    assert even_position_to_number("X") == 23
+    assert even_position_to_number("Y") == 24
+    assert even_position_to_number("Z") == 25
+    assert even_position_to_number("3") == 3
