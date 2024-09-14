@@ -1,5 +1,6 @@
 from src.support_functions import digit_or_special_present, is_empty_or_only_space, is_vowel
 from src.support_functions import divide_vowels_consonants, is_name_ok, is_surname_ok, is_gender_ok
+from src.support_functions import is_place_of_birth_ok
 
 def test_digit_or_special_present():
     """
@@ -105,3 +106,16 @@ def test_is_gender_ok():
     assert is_gender_ok('F') == True
     assert is_gender_ok('f') == True
     assert is_gender_ok('maschio') == False
+
+def test_is_place_of_birth_ok():
+    """
+    Test the is_place_of_birth_ok function.
+    GIVEN: a string representing a place of birth
+    WHEN: the function is called with a place of birth string
+    THEN: the function returns true only if the string is not empty or only spaces
+    and no digit are present
+    """
+    assert is_place_of_birth_ok('Roma') == True
+    assert is_place_of_birth_ok('Roma2') == False
+    assert is_place_of_birth_ok('') == False
+    assert is_place_of_birth_ok('   ') == False

@@ -148,18 +148,43 @@ def is_surname_ok(surname):
     return True
 
 def is_gender_ok(gender):
-  """
-  This function checks if the gender is M or F. In particular M,m,F,f are
-  allowed, or those letter with spaces.
+    """
+    This function checks if the gender is M or F. In particular M,m,F,f are
+    allowed, or those letter with spaces.
 
-  Parameters:
-  gender (str): The gender to check.
+    Parameters:
+    gender (str): The gender to check.
 
-  Returns:
-  bool: True if the gender is valid, False otherwise.
-  """
+    Returns:
+    bool: True if the gender is valid, False otherwise.
+    """
 
-  if gender.strip() == 'M' or gender.strip() == 'm' or gender.strip() == 'F' or gender.strip() == 'f':
+    if gender.strip() == 'M' or gender.strip() == 'm' or gender.strip() == 'F' or gender.strip() == 'f':
+       return True
+    else:
+       return False
+    
+def is_place_of_birth_ok(place_of_birth):
+    """
+    This function checks if the place of birth is valid. In particular should not
+    be empty or only spaces, and digit should not be present.
+    Doesn't check for ASCII because some accented letter may be present.
+  
+    Parameters:
+    place_of_birth (str): The place of birth to check.
+  
+    Returns:
+    bool: True if the place of birth is valid, False otherwise.
+    """
+  
+    # Check if the place of birth is not empty or only spaces
+    if is_empty_or_only_space(place_of_birth):
+      return False
+  
+    #Check if nubers are present, cannot use isdigit() on the string because if
+    #place of birth contains digit and characters, isdigit() return false
+    for char in place_of_birth:
+      if char.isdigit():
+        return False
+  
     return True
-  else:
-    return False
