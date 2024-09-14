@@ -1,3 +1,11 @@
+import sys
+import os
+
+#add path to import modules
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
+
+
+
 from src.support_functions import digit_or_special_present, is_empty_or_only_space, is_vowel
 from src.support_functions import divide_vowels_consonants, is_name_ok, is_surname_ok, is_gender_ok
 from src.support_functions import is_place_of_birth_ok, gender_to_boolean, last_two_digits
