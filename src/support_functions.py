@@ -14,7 +14,6 @@ def digit_or_special_present(input_string):
     # Define the set of special characters
     special_characters = set(string.punctuation)
 
-    # Check each character in the string
     for char in input_string:
         # If the character is a digit or a special character, return True
         if char.isdigit() or char in special_characters:
@@ -22,3 +21,25 @@ def digit_or_special_present(input_string):
 
     # If no digits or special characters are found, return False
     return False
+
+
+def is_empty_or_only_space(s):
+    """
+    This function checks if a given string is not empty or only spaces.
+
+    Parameters:
+    s (str): The string to check.
+
+    Returns:
+    bool: True if the string is empty or only spaces, False otherwise.
+    """
+
+    # If the string is empty or only spaces, return True
+    if s.strip() == '':
+        return True
+
+    # If the string is not empty and not only spaces, return False
+    return False
+
+
+
