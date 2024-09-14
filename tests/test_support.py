@@ -1,5 +1,5 @@
 from src.support_functions import digit_or_special_present, is_empty_or_only_space, is_vowel
-from src.support_functions import divide_vowels_consonants, is_name_ok, is_surname_ok
+from src.support_functions import divide_vowels_consonants, is_name_ok, is_surname_ok, is_gender_ok
 
 def test_digit_or_special_present():
     """
@@ -91,3 +91,17 @@ def test_is_surname_ok():
     assert  is_surname_ok('bianchi rossi')==True
     assert  is_surname_ok(' bianchi rossi')==True
     assert  is_surname_ok('bianchi rossè ')==False #non ASCII
+
+
+def test_is_gender_ok():
+    """
+    Test the is_gender_ok function.
+    GIVEN: a string representing a gender
+    WHEN: the function is called with a gender string
+    THEN: the function returns true only if the string is M or m or F or f
+    """
+    assert is_gender_ok('M') == True
+    assert is_gender_ok('m') == True
+    assert is_gender_ok('F') == True
+    assert is_gender_ok('f') == True
+    assert is_gender_ok('maschio') == False

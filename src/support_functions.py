@@ -146,3 +146,20 @@ def is_surname_ok(surname):
         return False
 
     return True
+
+def is_gender_ok(gender):
+  """
+  This function checks if the gender is M or F. In particular M,m,F,f are
+  allowed, or those letter with spaces.
+
+  Parameters:
+  gender (str): The gender to check.
+
+  Returns:
+  bool: True if the gender is valid, False otherwise.
+  """
+
+  if gender.strip() == 'M' or gender.strip() == 'm' or gender.strip() == 'F' or gender.strip() == 'f':
+    return True
+  else:
+    return False
