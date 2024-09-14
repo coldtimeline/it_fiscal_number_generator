@@ -205,3 +205,27 @@ def gender_to_boolean(gender):
       return True
     else:
       return False
+
+def last_two_digits(number):
+    """
+    This function takes a number as input and returns the last two digits of that number.
+    doesn't check if the number is negative because datetime month, year and day can only
+    be positive and integer number
+
+    Parameters:
+    number (int): representing year or day of birth
+
+    Returns:
+    str: The last two digits of the year or day as a two-digit string
+    """
+
+    number_str = str(number)
+
+    # Get the last two digits
+    last_two_digits = number_str[-2:]
+
+    # If the year has less than two digits, prepend a '0',
+    if len(last_two_digits) < 2:
+        last_two_digits = '0' + last_two_digits
+
+    return last_two_digits

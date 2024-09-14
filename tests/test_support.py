@@ -1,6 +1,6 @@
 from src.support_functions import digit_or_special_present, is_empty_or_only_space, is_vowel
 from src.support_functions import divide_vowels_consonants, is_name_ok, is_surname_ok, is_gender_ok
-from src.support_functions import is_place_of_birth_ok, gender_to_boolean
+from src.support_functions import is_place_of_birth_ok, gender_to_boolean, last_two_digits
 
 def test_digit_or_special_present():
     """
@@ -132,3 +132,18 @@ def test_gender_to_boolean():
     assert gender_to_boolean('m') == True
     assert gender_to_boolean('F') == False
     assert gender_to_boolean('f') == False
+
+
+def test_last_two_digits():
+    """
+    Test the last_two_digits function.
+    GIVEN: an integer number
+    WHEN: the function is called with a number
+    THEN: the function returns the last two digits of the number
+    """
+    assert last_two_digits(2023) == '23'
+    assert last_two_digits(1980) == '80'
+    assert last_two_digits(1979) == '79'
+    assert last_two_digits(5) == '05'
+    assert last_two_digits(0) == '00'
+    assert last_two_digits(2000) == '00'
