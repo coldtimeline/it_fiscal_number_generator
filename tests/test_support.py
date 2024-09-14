@@ -1,5 +1,5 @@
 from src.support_functions import digit_or_special_present, is_empty_or_only_space, is_vowel
-from src.support_functions import divide_vowels_consonants
+from src.support_functions import divide_vowels_consonants, is_name_ok
 
 def test_digit_or_special_present():
     """
@@ -55,3 +55,22 @@ def test_divide_vowels_consonants():
     assert divide_vowels_consonants("  ")[1] == ""
     assert divide_vowels_consonants("a  ")[0] == "a"
     assert divide_vowels_consonants("a  ")[1] == ""
+
+
+
+def test_is_name_ok():
+    """
+    Test the is_name_ok function.
+    GIVEN: a string representing a name
+    WHEN: the function is called with a name
+    THEN: the function returns true only no punctation is present, no digit is present
+    and no non ASCII character is present
+    """
+    assert  is_name_ok('cate')==True
+    assert  is_name_ok('cate5')==False
+    assert  is_name_ok('')==False
+    assert  is_name_ok('    ')==False
+    assert  is_name_ok('gianmar.ia')==False #because i don't know where to divide it
+    assert  is_name_ok('gian maria')==True
+    assert  is_name_ok(' gian maria')==True
+    assert  is_name_ok('gian marià ')==False #name with accent

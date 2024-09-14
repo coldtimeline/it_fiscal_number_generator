@@ -91,3 +91,34 @@ def divide_vowels_consonants(word):
             consonants += char
 
     return vowels, consonants
+
+
+def is_name_ok(name):
+    """
+    This function checks if a given name is valid. The name is valid if it is
+    not empty or not contains only spaces and does not contain any
+    special characters or numbers. Name should be also written in ASCII
+
+    Parameters:
+    name (str): The name to check.
+
+    Returns:
+    bool: True if the name is valid, False otherwise.
+    """
+
+    # Check if the name is not empty or only spaces
+    if is_empty_or_only_space(name):
+        return False
+
+    # Check if the name contains only letters. Not use the isalpha() string
+    # method because it does not work with spaces that may be present in
+    # the name. Points or similar are not accepted as separator
+    if digit_or_special_present(name):
+        return False
+
+    # Check if contains non ascii character, no accented letter or diacritical accepted
+    if not name.isascii():
+        return False
+
+    # If the name is valid, return True
+    return True
