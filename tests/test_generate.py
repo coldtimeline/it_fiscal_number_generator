@@ -7,6 +7,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 
 from src.support_functions import divide_vowels_consonants
 from src.generate_functions import generate_day_gender_code, generate_name_code, generate_surname_code
+from src.generate_functions import generate_month_char
 
 def test_generate_day_gender_code():
     """
@@ -62,3 +63,25 @@ def test_generate_surname_code():
     assert generate_surname_code("U", "") == "UXX"  # Zero consonants and one vowel
     assert generate_surname_code("", "") == "XXX"  # Zero consonants and zero vowel
     assert generate_surname_code(divide_vowels_consonants("Rocchini")[0], divide_vowels_consonants("Rocchini")[1]) == "RCC"
+
+
+
+def test_generate_month_char():
+    """ 
+    Test the generate_month_char function.
+    GIVEN: an integer between 1 and 12 inclusive
+    WHEN: the function is called with a integer
+    THEN: the function returns a three char string of the surname according to the rules
+    """
+    assert generate_month_char(1) == 'A'
+    assert generate_month_char(5) == 'E'
+    assert generate_month_char(9) == 'P'
+    assert generate_month_char(2) == 'B'
+    assert generate_month_char(6) == 'H'
+    assert generate_month_char(10) == 'R'
+    assert generate_month_char(3) == 'C'
+    assert generate_month_char(7) == 'L'
+    assert generate_month_char(11) == 'S'
+    assert generate_month_char(4) == 'D'
+    assert generate_month_char(8) == 'M'
+    assert generate_month_char(12) == 'T'

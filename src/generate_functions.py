@@ -138,3 +138,32 @@ def generate_surname_code(vowels_ucase, consonants_ucase):
 
 
     return code
+
+def generate_month_char(month):
+    """
+    Converts an integer number (representing month of birth)
+    to a corresponding character based on Agenzia delle Entrate rules
+
+    Parameters:
+    month (int): The input integer number representing the month.
+
+    Returns:
+    str: The corresponding character as per the rules.
+
+    Raises:
+    ValueError: If the number is not between 1 and 12 inclusive.
+    """
+    # Dictionary mapping numbers to characters
+    number_char_map = {
+        1: 'A', 5: 'E', 9: 'P',
+        2: 'B', 6: 'H', 10: 'R',
+        3: 'C', 7: 'L', 11: 'S',
+        4: 'D', 8: 'M', 12: 'T'
+    }
+
+    # Check if the number is in the valid range
+    if month not in number_char_map:
+        raise ValueError("Month must be between 1 and 12 inclusive.")
+
+    # Return the corresponding character
+    return number_char_map[month]
