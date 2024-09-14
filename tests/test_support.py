@@ -64,7 +64,7 @@ def test_is_name_ok():
     GIVEN: a string representing a name
     WHEN: the function is called with a name
     THEN: the function returns true only no punctation is present, no digit is present
-    and no non ASCII character is present
+    and no non ASCII character is present, and if it is not empty or only spaces
     """
     assert  is_name_ok('cate')==True
     assert  is_name_ok('cate5')==False
