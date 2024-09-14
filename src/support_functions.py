@@ -122,3 +122,27 @@ def is_name_ok(name):
 
     # If the name is valid, return True
     return True
+
+
+def is_surname_ok(surname):
+    """
+    This function checks if a given surname is valid. The surname is valid if
+    it is empty or contains only spaces or does not contain any
+    special characters or numbers.
+    Parameters:
+    surname (str): The surname to check.
+
+    Returns:
+    bool: True if the surname is valid, False otherwise.
+
+    """
+    # Check if the surname contains only letters. Not use the isalpha() string
+    # method because it does not work with spaces that may be present in
+    # the surname
+    if digit_or_special_present(surname):
+        return False
+    # Check if contains non ascii character, no accented letter or diacritical accepted
+    if not surname.isascii():
+        return False
+
+    return True

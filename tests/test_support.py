@@ -1,5 +1,5 @@
 from src.support_functions import digit_or_special_present, is_empty_or_only_space, is_vowel
-from src.support_functions import divide_vowels_consonants, is_name_ok
+from src.support_functions import divide_vowels_consonants, is_name_ok, is_surname_ok
 
 def test_digit_or_special_present():
     """
@@ -74,3 +74,20 @@ def test_is_name_ok():
     assert  is_name_ok('gian maria')==True
     assert  is_name_ok(' gian maria')==True
     assert  is_name_ok('gian marià ')==False #name with accent
+
+def test_is_surname_ok():
+    """
+    Test the is_surname_ok function.
+    GIVEN: a string representing a surname
+    WHEN: the function is called with a surname
+    THEN: the function returns true only no punctation is present, no digit is present
+    and no non ASCII character is present, but also if is empty or only spaces
+    """
+    assert  is_surname_ok('cate')==True
+    assert  is_surname_ok('cate5')==False
+    assert  is_surname_ok('')==True
+    assert  is_surname_ok('    ')==True
+    assert  is_surname_ok('bianchi.rossi')==False
+    assert  is_surname_ok('bianchi rossi')==True
+    assert  is_surname_ok(' bianchi rossi')==True
+    assert  is_surname_ok('bianchi rossè ')==False #non ASCII
