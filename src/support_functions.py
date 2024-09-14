@@ -42,4 +42,20 @@ def is_empty_or_only_space(s):
     return False
 
 
+def is_vowel(char):
+    """
+    Check if the provided character is a vowel.
 
+    Parameters:
+    char (str): A single character to be checked.
+
+    Returns:
+    bool: True if the character is a vowel, False otherwise.
+    """
+
+    # Define a list of vowels: accented not inserted 
+    #because they are not ASCII character
+    vowels = 'aeiouAEIOU' 
+
+    # Check if the character is a vowel
+    return char in vowels

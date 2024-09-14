@@ -1,4 +1,4 @@
-from src.support_functions import digit_or_special_present, is_empty_or_only_space
+from src.support_functions import digit_or_special_present, is_empty_or_only_space, is_vowel
 
 def test_digit_or_special_present():
     """
@@ -26,3 +26,14 @@ def test_is_empty_or_only_space():
     assert is_empty_or_only_space("") == True 
     assert is_empty_or_only_space(" ") == True
 
+def test_is_vowel():
+    """
+    Test the is_vowel function.
+    GIVEN: a single character
+    WHEN: the function is called with a char
+    THEN: the function returns true only if digit or punctation is present
+    """
+    
+    assert is_vowel('a') == True
+    assert is_vowel('A') == True
+    assert is_vowel('b') == False
