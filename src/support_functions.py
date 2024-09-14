@@ -270,3 +270,43 @@ def even_position_to_number(char):
 
     # Return the corresponding value
     return even_position_to_number_map[char]
+
+def odd_position_to_number(char):
+    """
+    This function take a char which must be an upper character or a digit and
+    returns a value according to agenzia delle entrate rules, for odd positioned
+    characters or digits
+
+    Parameters:
+    char (char): the char to convert
+
+    Returns:
+    int: the converted value
+
+    Raises:
+    ValueError: If the input character is not present.
+    """
+
+    # Dictionary mapping numbers to characters
+    odd_position_to_number_map = {
+        "A": 1, "0": 1,
+        "B": 0, "1": 0,
+        "C": 5, "2": 5,
+        "D": 7, "3": 7,
+        "E": 9, "4": 9,
+        "F": 13, "5": 13,
+        "G": 15, "6": 15,
+        "H": 17, "7": 17,
+        "I": 19, "8": 19,
+        "J": 21, "9": 21,
+        "K":2, "L":4, "M":18, "N":20, "O":11, "P":3, "Q":6, "R":8, "S":12, "T":14,
+        "U":16, "V":10, "W":22, "X":25, "Y":24, "Z":23
+
+    }
+
+    # Check if the character is in the map
+    if char not in odd_position_to_number_map:
+        raise ValueError("Invalid character")
+
+    # Return the corresponding value
+    return odd_position_to_number_map[char]
