@@ -1,6 +1,6 @@
 from src.support_functions import digit_or_special_present, is_empty_or_only_space, is_vowel
 from src.support_functions import divide_vowels_consonants, is_name_ok, is_surname_ok, is_gender_ok
-from src.support_functions import is_place_of_birth_ok
+from src.support_functions import is_place_of_birth_ok, gender_to_boolean
 
 def test_digit_or_special_present():
     """
@@ -119,3 +119,16 @@ def test_is_place_of_birth_ok():
     assert is_place_of_birth_ok('Roma2') == False
     assert is_place_of_birth_ok('') == False
     assert is_place_of_birth_ok('   ') == False
+
+
+def test_gender_to_boolean():
+    """
+    Test the gender_to_boolean function.
+    GIVEN: a char representing a gender
+    WHEN: the function is called with a gender char
+    THEN: the function returns true only if the string is M or m
+    """
+    assert gender_to_boolean('M') == True
+    assert gender_to_boolean('m') == True
+    assert gender_to_boolean('F') == False
+    assert gender_to_boolean('f') == False

@@ -188,3 +188,20 @@ def is_place_of_birth_ok(place_of_birth):
         return False
   
     return True
+
+def gender_to_boolean(gender):
+    """
+    This function takes a string representing the gender and returns a boolean
+    value. If the gender is 'M' or 'm' return true, if the gender is 'F' or 'f'
+    return false. Should be called only if the gender is valid.
+  
+    Parameters:
+    gender (str): The input gender.
+  
+    Returns:
+    bool: The corresponding boolean value 
+    """
+    if gender.strip() == 'M' or gender.strip() == 'm':
+      return True
+    else:
+      return False
