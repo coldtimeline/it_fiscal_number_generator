@@ -59,3 +59,35 @@ def is_vowel(char):
 
     # Check if the character is a vowel
     return char in vowels
+
+
+def divide_vowels_consonants(word):
+    """
+    This function takes a word as input and returns two string:
+    one containing the vowels and the other containing consonants.
+    This function works only with alphabetic characters, so the imput word should be
+    controlled before calling this function.
+
+    Parameters:
+    word (str): The input word.
+
+    Returns:
+    vowels (str): The string containing the vowels.
+    consonants (str): The string containing the consonants.
+    """
+
+
+    # Initialize empty strings for vowels and consonants
+    vowels = ""
+    consonants = ""
+    # Eliminate al spaces that may be present
+    word_wo_spaces = word.replace(" ", "")
+
+    # Iterate through each character in the word, checking if is a vowel or not
+    for char in word_wo_spaces:
+        if is_vowel(char):
+            vowels += char
+        else:
+            consonants += char
+
+    return vowels, consonants
