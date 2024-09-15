@@ -1,5 +1,6 @@
 import sys
 import os
+import pandas as pd
 
 #add path to import modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
@@ -7,7 +8,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 
 from src.support_functions import divide_vowels_consonants
 from src.generate_functions import generate_day_gender_code, generate_name_code, generate_surname_code
-from src.generate_functions import generate_month_char, generate_last_characther
+from src.generate_functions import generate_month_char, generate_last_characther, generate_city_code
+from src.ask_functions import get_dataframe_from_web
 
 def test_generate_day_gender_code():
     """
@@ -97,3 +99,7 @@ def test_generate_last_characther():
     assert generate_last_characther("LTZCST80A41G712") == "C"
     assert generate_last_characther("PPPGNN80A42B602") == "G"
     assert generate_last_characther("XIXTIX85H01E438") == "N"
+
+def test_generate_city_code():
+    dataset_from_internet = get_dataframe_from_web('https://dait.interno.gov.it/territorio-e-autonomie-locali/sut/elenco_codici_comuni.php')
+    assert generate_city_code(dataset_from_internet, "MONTECCHIO EMILIA") == 'F463'

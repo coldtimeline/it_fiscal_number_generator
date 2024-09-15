@@ -1,6 +1,7 @@
 import sys
 import os
 import string
+import pandas as pd
 
 #add path to import modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
@@ -221,3 +222,31 @@ def generate_last_characther(input_code):
     last_digit_char = chr(last_digit_number + 65)
 
     return last_digit_char
+
+def generate_city_code(city_df, city_name):
+    """
+    This function searches for a city in the 'DESCRIZIONE COMUNE' column of the dataframe
+    and returns its corresponding code from the 'CODICE BELFIORE' column.
+
+    Parameters:
+    city_df (pandas.DataFrame): The dataframe containing the city data.
+    city_name (str): The name of the city to search for.
+
+    Returns:
+    str: The code of the city if found, otherwise None.
+
+    Raises:
+    ValueError: If the city is not found in the dataframe.
+    """
+
+    #access the first dataframe
+    #city_df = city_df[0]
+
+    # Filter the dataframe to find the row with the given city name
+    city_row = city_df[city_df['DESCRIZIONE COMUNE'] == city_name]
+
+    # Check if the city was found and return the corresponding code
+    if not city_row.empty:
+        return city_row['CODICE BELFIORE'].values[0]
+    else:
+        raise ValueError("city row not found")
