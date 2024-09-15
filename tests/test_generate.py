@@ -1,6 +1,7 @@
 import sys
 import os
 import pandas as pd
+from datetime import datetime
 
 #add path to import modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
@@ -9,6 +10,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 from src.support_functions import divide_vowels_consonants
 from src.generate_functions import generate_day_gender_code, generate_name_code, generate_surname_code
 from src.generate_functions import generate_month_char, generate_last_characther, generate_city_code
+from src.generate_functions import generate_fiscal_code
 from src.ask_functions import get_dataframe_from_web
 
 def test_generate_day_gender_code():
@@ -103,3 +105,12 @@ def test_generate_last_characther():
 def test_generate_city_code():
     dataset_from_internet = get_dataframe_from_web('https://dait.interno.gov.it/territorio-e-autonomie-locali/sut/elenco_codici_comuni.php')
     assert generate_city_code(dataset_from_internet, "MONTECCHIO EMILIA") == 'F463'
+
+
+def test_generate_fiscal_code():
+    dataset_from_internet = get_dataframe_from_web('https://dait.interno.gov.it/territorio-e-autonomie-locali/sut/elenco_codici_comuni.php')
+    datatest = datetime(1980, 1, 1)
+    datatest2 = datetime(1980, 1, 3)
+    assert generate_fiscal_code('maRia RosariA','boCCIA','F',datatest,'POMPEI',dataset_from_internet) == 'BCCMRS80A41G813Y'
+    #this test tests if a man with only one digit for the day has two digit day in the fiscal code
+    assert generate_fiscal_code('mario','rossi','m',datatest2,'PISTICCI',dataset_from_internet) == 'RSSMRA80A03G712K'

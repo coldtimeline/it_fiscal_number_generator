@@ -2,11 +2,13 @@ import sys
 import os
 import string
 import pandas as pd
+from datetime import datetime
 
 #add path to import modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 
-from src.support_functions import odd_position_to_number,even_position_to_number
+from src.support_functions import odd_position_to_number,even_position_to_number, divide_vowels_consonants
+from src.support_functions import last_two_digits, gender_to_boolean
 
 def generate_day_gender_code(gender, day_of_birth):
     """
@@ -250,3 +252,34 @@ def generate_city_code(city_df, city_name):
         return city_row['CODICE BELFIORE'].values[0]
     else:
         raise ValueError("city row not found")
+
+
+def generate_fiscal_code(name, surname, gender, date_of_birth, birth_place, placedataset):
+  """
+  This function takes the name, surname, gender, date of birth and birth place of a person
+  and returns the fiscal code of that person.
+
+  Parameters:
+  name (str): the name of the person
+  surname (str): the surname of the person
+  gender (str): the gender of the person
+  date_of_birth (datetime): the date of birth of the person
+  birth_place (str): the birth place of the person
+  placedataset (DataFrame): the dataframe containing the place codes
+
+  Returns:
+  str: the fiscal code of the person
+  """
+  #generate name, surname, year, month, day and gender, birth place code
+  name_code = generate_name_code(divide_vowels_consonants(name)[0],divide_vowels_consonants(name)[1])
+  surname_code = generate_surname_code(divide_vowels_consonants(surname)[0],divide_vowels_consonants(surname)[1])
+  year_code = last_two_digits(date_of_birth.year)
+  month_code = generate_month_char(date_of_birth.month)
+  day_and_gender_code = last_two_digits(generate_day_gender_code(gender_to_boolean(gender),date_of_birth.day))
+  place_code = generate_city_code(placedataset,birth_place)
+
+  #generate last char
+  uncompleted_code = surname_code + name_code + str(year_code) + month_code + str(day_and_gender_code) + place_code
+  last_char = generate_last_characther(uncompleted_code)
+
+  return uncompleted_code + last_char
