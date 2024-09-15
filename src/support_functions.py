@@ -1,4 +1,6 @@
 import string
+from fuzzywuzzy import fuzz
+import pandas as pd
 
 def digit_or_special_present(input_string):
     """
@@ -310,3 +312,37 @@ def odd_position_to_number(char):
 
     # Return the corresponding value
     return odd_position_to_number_map[char]
+
+
+
+def find_similar_strings(df, column, input_string, threshold=80):
+    """
+    This function searches for strings similar to the input string in a specific column
+    of a pandas DataFrame.
+
+    Parameters:
+    df (DataFrame): The pandas DataFrame to search.
+    column (str): The column in the DataFrame to search.
+    input_string (str): The string to find similar strings to.
+    threshold (int): The similarity threshold. Strings with a similarity score above this 
+    threshold will be considered similar.
+    threshold 80 to get some similar string but not too much
+
+    Returns:
+    similar_strings (list): A list of strings found to be similar to the input string.
+
+    Raises:
+    ValueError: If no similar strings are found, or name of column have changed
+    """
+    # Ensure the column exists in the DataFrame, maybe name has changed
+    if column not in df.columns:
+        raise ValueError(f"The column '{column}' does not exist in the DataFrame.")
+
+    # Find similar strings: create a list with a loop, string acceppted only if the test is true
+    similar_strings = [str for str in df[column] if fuzz.ratio(input_string, str) > threshold]
+
+    # Raise an error if no similar strings are found
+    if not similar_strings:
+        raise ValueError(f"No strings similar to '{input_string}' were found in the column '{column}'.")
+
+    return similar_strings
