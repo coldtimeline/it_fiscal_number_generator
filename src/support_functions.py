@@ -346,3 +346,40 @@ def find_similar_strings(df, column, input_string, threshold=80):
         raise ValueError(f"No strings similar to '{input_string}' were found in the column '{column}'.")
 
     return similar_strings
+
+
+
+def select_string(strings):
+    """
+    This function takes a list of strings as input and returns a string based on
+    user selection.
+
+    Parameters:
+    strings (list): A list of strings.
+
+    Returns:
+    str: A string based on user selection.
+
+    Raises:
+    ValueError: If the list is empty or the user selection is invalid.
+    """
+
+    # If the list is empty, raise an error
+    if not strings:
+        raise ValueError("The list of cities is empty")
+
+    # If the list contains one string, return that string
+    if len(strings) == 1:
+        return strings[0]
+
+    # If the list contains two or more strings, show to the user the strings, each of them numbered
+    for i, string in enumerate(strings):
+        print(f"{i+1}. {string}")
+
+  
+    selection = input("Please enter the number of the place you were born: ")
+    # If the user answers with a number identifying a string, return that string
+    if selection.isdigit() and 1 <= int(selection) <= len(strings):
+        return strings[int(selection) - 1]
+    else:
+        raise ValueError("Invalid selection.")
