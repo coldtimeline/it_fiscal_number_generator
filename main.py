@@ -11,7 +11,8 @@ def run_program():
       gender = get_gender()
       date_of_birth = get_date_of_birth()
 
-      place_dataset = get_dataframe_from_web('https://dait.interno.gov.it/territorio-e-autonomie-locali/sut/elenco_codici_comuni.php')
+      #place_dataset = get_dataframe_from_web('https://dait.interno.gov.it/territorio-e-autonomie-locali/sut/elenco_codici_comuni.php')
+      place_dataset = get_dataframe_from_web('codici_comuni.htm')
       place = get_place_of_birth(place_dataset)
 
       print("your fiscal code is:")

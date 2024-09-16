@@ -103,7 +103,7 @@ def test_generate_last_characther():
     assert generate_last_characther("XIXTIX85H01E438") == "N"
 
 def test_generate_city_code():
-    dataset_from_internet = get_dataframe_from_web('https://dait.interno.gov.it/territorio-e-autonomie-locali/sut/elenco_codici_comuni.php')
+    dataset_from_internet = get_dataframe_from_web('codici_comuni.htm')
     assert generate_city_code(dataset_from_internet, "MONTECCHIO EMILIA") == 'F463'
 
 
