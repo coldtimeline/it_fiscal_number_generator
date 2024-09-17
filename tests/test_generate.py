@@ -103,6 +103,13 @@ def test_generate_last_characther():
     assert generate_last_characther("XIXTIX85H01E438") == "N"
 
 def test_generate_city_code():
+    """
+    This function test generate_city_code function when valid dataset and place is given
+
+    GIVEN: the dataset of place and the correct name of a place
+    WHEN: the function is called with those information
+    THEN: it return the right code
+    """
     dataset_from_internet = get_dataframe_from_webpage('codici_comuni.htm')
     assert generate_city_code(dataset_from_internet, "MONTECCHIO EMILIA") == 'F463'
 
