@@ -102,15 +102,12 @@ def get_date_of_birth():
 
     Returns:
     datetime: A datetime object representing the user's date of birth.
-
-    Raises:
-    ValueError: If the date of birth is not in the correct format.
     """
     # Prompt the user for their date of birth
     date_of_birth_str = input("Please enter your date of birth (DD-MM-YYYY): ")
 
     # Convert the string to a datetime object
-    # If the date is not in the correct format, this will raise a ValueError
+    # If the date is not in the correct format, this function will raise a ValueError
     date_of_birth = datetime.strptime(date_of_birth_str, "%d-%m-%Y")
 
     return date_of_birth
@@ -128,14 +125,18 @@ def get_place_of_birth(df):
 
     Returns:
     str: The name of the place of birth.
+
+    Raises: 
+    ValueError if the place of birth contains digit or is empty
     """
     place_of_birth = input("Please enter your city (comune) of birth: ")
     if not is_place_of_birth_ok(place_of_birth):
         raise ValueError("The place of birth entered is not valid. No digit or empty string allowed")
 
-    #string to capital letter because string are capital letter in dataframe we used
+    #string to capital letter because string are in capital letter in dataframe we used
     place_of_birth = place_of_birth.upper()
-    #find the correct place of birth:
+    
+    #to find the correct place of birth:
     #find_similar_string search for city with similar names in the dataset
     #select_string select which one of the found string is the right one
     place_of_birth_found = select_string(find_similar_strings(df, 'DESCRIZIONE COMUNE', place_of_birth))
