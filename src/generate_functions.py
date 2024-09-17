@@ -98,8 +98,8 @@ def generate_surname_code(vowels_ucase, consonants_ucase):
     of the surname, according to agenzia delle entrate rules.
 
     Parameters:
-    vowels_ucase (str): String containing all the vowels of the name, unknown case.
-    consonants_ucase (str): String containing all the consonants of the name, unknown case.
+    vowels_ucase (str): String containing all the vowels of the surname, unknown case.
+    consonants_ucase (str): String containing all the consonants of the surname, unknown case.
 
     Returns:
     str: A three-character string according to the specified rules.
@@ -191,7 +191,7 @@ def generate_last_characther(input_code):
     char: the new last character of the code
 
     Raises:
-    ValueError: If the input code length is different from 15 characters
+    ValueError: If the input is empty or code length is different from 15 characters
     """
 
     if input_code == "":
@@ -232,7 +232,7 @@ def generate_city_code(city_df, city_name):
 
     Parameters:
     city_df (pandas.DataFrame): The dataframe containing the city data.
-    city_name (str): The name of the city to search for.
+    city_name (str): The EXACT name of the city to search for.
 
     Returns:
     str: The code of the city if found, otherwise None.
@@ -240,9 +240,6 @@ def generate_city_code(city_df, city_name):
     Raises:
     ValueError: If the city is not found in the dataframe.
     """
-
-    #access the first dataframe
-    #city_df = city_df[0]
 
     # Filter the dataframe to find the row with the given city name
     city_row = city_df[city_df['DESCRIZIONE COMUNE'] == city_name]
@@ -256,8 +253,8 @@ def generate_city_code(city_df, city_name):
 
 def generate_fiscal_code(name, surname, gender, date_of_birth, birth_place, placedataset):
   """
-  This function takes the name, surname, gender, date of birth and birth place of a person
-  and returns the fiscal code of that person.
+  This function takes the name, surname, gender, date of birth and birth place of a person,
+  the dataset of code places and returns the fiscal code of that person.
 
   Parameters:
   name (str): the name of the person
