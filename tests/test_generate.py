@@ -11,7 +11,7 @@ from src.support_functions import divide_vowels_consonants
 from src.generate_functions import generate_day_gender_code, generate_name_code, generate_surname_code
 from src.generate_functions import generate_month_char, generate_last_characther, generate_city_code
 from src.generate_functions import generate_fiscal_code
-from src.ask_functions import get_dataframe_from_web
+from src.ask_functions import get_dataframe_from_webpage
 
 def test_generate_day_gender_code():
     """
@@ -103,12 +103,12 @@ def test_generate_last_characther():
     assert generate_last_characther("XIXTIX85H01E438") == "N"
 
 def test_generate_city_code():
-    dataset_from_internet = get_dataframe_from_web('codici_comuni.htm')
+    dataset_from_internet = get_dataframe_from_webpage('codici_comuni.htm')
     assert generate_city_code(dataset_from_internet, "MONTECCHIO EMILIA") == 'F463'
 
 
 def test_generate_fiscal_code():
-    dataset_from_internet = get_dataframe_from_web('https://dait.interno.gov.it/territorio-e-autonomie-locali/sut/elenco_codici_comuni.php')
+    dataset_from_internet = get_dataframe_from_webpage('https://dait.interno.gov.it/territorio-e-autonomie-locali/sut/elenco_codici_comuni.php')
     datatest = datetime(1980, 1, 1)
     datatest2 = datetime(1980, 1, 3)
     assert generate_fiscal_code('maRia RosariA','boCCIA','F',datatest,'POMPEI',dataset_from_internet) == 'BCCMRS80A41G813Y'

@@ -10,27 +10,27 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 from src.support_functions import is_name_ok, is_surname_ok, is_gender_ok, is_gender_ok, is_place_of_birth_ok
 from src.support_functions import select_string, find_similar_strings
 
-def get_dataframe_from_web(url):
+def get_dataframe_from_webpage(path_to_page):
     """
-    This function takes a URL of a webpage containing an HTML table and returns a pandas DataFrame.
+    This function takes a path or an URL of a webpage containing an HTML table and returns a pandas DataFrame.
     In particular, the firts table of the webpage is returned.
 
     Parameters:
-    url (str): The URL of the webpage containing the HTML table.
+    path_to_page (str): The URL or path of the webpage containing the HTML table.
 
     Returns:
     df (DataFrame): A pandas DataFrame containing the data from the HTML table.
 
     Raises:
-    ValueError: If the URL does not contain a valid HTML table, or if other error occurs during the reading process.
+    ValueError: If the path or URL does not contain a valid HTML table, or if other error occurs during the reading process.
     """
     try:
         # Use the pandas read_html function to read the HTML table into a list of DataFrames
-        dfs = pd.read_html(url)
+        dfs = pd.read_html(path_to_page)
 
         # Check if any tables were found
         if not dfs:
-            raise ValueError("No tables found at the provided URL")
+            raise ValueError("No tables found at the provided path")
 
         # Return the first table found
         return dfs[0]
@@ -136,8 +136,8 @@ def get_place_of_birth(df):
     #string to capital letter because string are capital letter in dataframe we used
     place_of_birth = place_of_birth.upper()
     #find the correct place of birth:
-    #find_similar_string find for city with similar names in the dataset
-    #select_string which one of the found string is the right one
+    #find_similar_string search for city with similar names in the dataset
+    #select_string select which one of the found string is the right one
     place_of_birth_found = select_string(find_similar_strings(df, 'DESCRIZIONE COMUNE', place_of_birth))
 
     return place_of_birth_found
