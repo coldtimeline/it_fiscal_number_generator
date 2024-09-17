@@ -67,7 +67,7 @@ def divide_vowels_consonants(word):
     """
     This function takes a word as input and returns two string:
     one containing the vowels and the other containing consonants.
-    This function works only with alphabetic characters, so the imput word should be
+    This function works only with ASCII characters, so the input word should be
     controlled before calling this function.
 
     Parameters:
@@ -98,8 +98,8 @@ def divide_vowels_consonants(word):
 def is_name_ok(name):
     """
     This function checks if a given name is valid. The name is valid if it is
-    not empty or not contains only spaces and does not contain any
-    special characters or numbers. Name should be also written in ASCII
+    not empty or it does not contain only spaces and does not contain any
+    special characters or numbers. Name should be also written with ASCII character
 
     Parameters:
     name (str): The name to check.
@@ -226,7 +226,7 @@ def last_two_digits(number):
     # Get the last two digits
     last_two_digits = number_str[-2:]
 
-    # If the year has less than two digits, prepend a '0',
+    # If the year has less than two digits, prepend a '0'
     if len(last_two_digits) < 2:
         last_two_digits = '0' + last_two_digits
 
