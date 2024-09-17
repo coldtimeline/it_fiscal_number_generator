@@ -108,9 +108,29 @@ def test_generate_city_code():
 
 
 def test_generate_fiscal_code():
-    dataset_from_internet = get_dataframe_from_webpage('https://dait.interno.gov.it/territorio-e-autonomie-locali/sut/elenco_codici_comuni.php')
+    """
+    This function test generate_fiscal_code when valid person is given
+
+    GIVEN: a male with a one digit day of birth
+    WHEN: the function is called with a male with above characteristics
+    THEN: it return a valid fiscal code
+    """
+    dataset_from_webpage = get_dataframe_from_webpage('codici_comuni.htm')
     datatest = datetime(1980, 1, 1)
-    datatest2 = datetime(1980, 1, 3)
-    assert generate_fiscal_code('maRia RosariA','boCCIA','F',datatest,'POMPEI',dataset_from_internet) == 'BCCMRS80A41G813Y'
+    assert generate_fiscal_code('maRia Rosa','boCCIoni','F',datatest,'POMPEI',dataset_from_webpage) == 'BCCMRS80A41G813Y'
+
+
+def test_generate_fiscal_code_singledigitday():
+    """
+    This function test generate_fiscal_code when a male with a sigle 
+    digit day of birth
+
+    GIVEN: a male with a one digit day of birth
+    WHEN: the function is called with a male with above characteristics
+    THEN: it return a valid fiscal code
+    """
+
+    dataset_from_webpage = get_dataframe_from_webpage('codici_comuni.htm')
+    data_test = datetime(1980, 1, 3)
     #this test tests if a man with only one digit for the day has two digit day in the fiscal code
-    assert generate_fiscal_code('mario','rossi','m',datatest2,'PISTICCI',dataset_from_internet) == 'RSSMRA80A03G712K'
+    assert generate_fiscal_code('mario','rossi','m',data_test,'PISTICCI', dataset_from_webpage) == 'RSSMRA80A03G712K'
