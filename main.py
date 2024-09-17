@@ -9,9 +9,7 @@ def run_program():
       name = get_name()
       surname = get_surname()
       gender = get_gender()
-      date_of_birth = get_date_of_birth()
-
-      #place_dataset = get_dataframe_from_webpage('https://dait.interno.gov.it/territorio-e-autonomie-locali/sut/elenco_codici_comuni.php')
+      date_of_birth = get_date_of_birth()      
       place_dataset = get_dataframe_from_webpage('codici_comuni.htm')
       place = get_place_of_birth(place_dataset)
 
