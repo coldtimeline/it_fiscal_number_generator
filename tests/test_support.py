@@ -2,6 +2,7 @@ import sys
 import os
 
 #add path to import modules
+#add to the list of sys.path the path of the parent folder (the absolute path)
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 
 
@@ -158,6 +159,14 @@ def test_last_two_digits():
 
 
 def test_even_position_to_number():
+    """
+    Test the even_position_to_number function
+    
+    GIVEN: An ASCII upper char or a digit
+    WHEN: the function is called with that number or char
+    THEN: the function return a number acoording to Agenzia Entrate
+    roules
+    """
     assert even_position_to_number("A") == 0
     assert even_position_to_number("B") == 1
     assert even_position_to_number("C") == 2
