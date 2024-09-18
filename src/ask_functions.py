@@ -10,7 +10,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 from src.support_functions import is_name_ok, is_surname_ok, is_gender_ok, is_gender_ok, is_place_of_birth_ok
 from src.support_functions import select_string, find_similar_strings
 
-def get_dataframe_from_webpage(path_to_page):
+def get_dataframe_from_html(path_to_page):
     """
     This function takes a path or an URL of a webpage containing an HTML table and returns a pandas DataFrame.
     In particular, the firts table of the webpage is returned.

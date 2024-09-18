@@ -11,7 +11,7 @@ from src.support_functions import divide_vowels_consonants
 from src.generate_functions import generate_day_gender_code, generate_name_code, generate_surname_code
 from src.generate_functions import generate_month_char, generate_last_characther, generate_city_code
 from src.generate_functions import generate_fiscal_code
-from src.ask_functions import get_dataframe_from_webpage
+from src.ask_functions import get_dataframe_from_html
 
 def test_generate_day_gender_code():
     """
@@ -110,7 +110,7 @@ def test_generate_city_code():
     WHEN: the function is called with those information
     THEN: it return the right code
     """
-    dataset_from_internet = get_dataframe_from_webpage('codici_comuni.htm')
+    dataset_from_internet = get_dataframe_from_html('codici_comuni.htm')
     assert generate_city_code(dataset_from_internet, "MONTECCHIO EMILIA") == 'F463'
 
 
@@ -122,7 +122,7 @@ def test_generate_fiscal_code():
     WHEN: the function is called with a male with above characteristics
     THEN: it return a valid fiscal code
     """
-    dataset_from_webpage = get_dataframe_from_webpage('codici_comuni.htm')
+    dataset_from_webpage = get_dataframe_from_html('codici_comuni.htm')
     datatest = datetime(1980, 1, 1)
     assert generate_fiscal_code('maRia Rosa','boCCIoni','F',datatest,'POMPEI',dataset_from_webpage) == 'BCCMRS80A41G813Y'
 
@@ -137,7 +137,7 @@ def test_generate_fiscal_code_singledigitday():
     THEN: it return a valid fiscal code
     """
 
-    dataset_from_webpage = get_dataframe_from_webpage('codici_comuni.htm')
+    dataset_from_webpage = get_dataframe_from_html('codici_comuni.htm')
     data_test = datetime(1980, 1, 3)
     #this test tests if a man with only one digit for the day has two digit day in the fiscal code
     assert generate_fiscal_code('mario','rossi','m',data_test,'PISTICCI', dataset_from_webpage) == 'RSSMRA80A03G712K'
