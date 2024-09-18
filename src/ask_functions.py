@@ -102,6 +102,10 @@ def get_date_of_birth():
 
     Returns:
     datetime: A datetime object representing the user's date of birth.
+
+    Raises:
+    ValueError: datetime.striptime function raises error if the date is not in the
+    correct format
     """
     # Prompt the user for their date of birth
     date_of_birth_str = input("Please enter your date of birth (DD-MM-YYYY): ")
