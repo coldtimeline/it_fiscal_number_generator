@@ -113,22 +113,62 @@ def test_is_vowel():
     """
     assert is_vowel('b') == False
 
-def test_divide_vowels_consonants():
+
+def test_divide_vowels_consonants_string():
     """
-    Test the divide_vowels_consonants function.
-    GIVEN: a string representing a word
-    WHEN: the function is called with a word
-    THEN: the function returns a string containing the vowels and one consonants
+    Test the divide_vowels_consonants function
+    GIVEN: an alphabetic string
+    WHEN: the function is called with that string
+    THEN: the function returns a tuple where the first element is vowel and the second consonants
     """
-    assert divide_vowels_consonants("ciao")[0] == "iao"
-    assert divide_vowels_consonants("ciao")[1] == "c"
-    assert divide_vowels_consonants("ciao")[0] + divide_vowels_consonants("ciao")[1] == "iaoc"
-    assert divide_vowels_consonants("")[0] == ""
-    assert divide_vowels_consonants("")[1] == ""
-    assert divide_vowels_consonants("   ")[0] == ""
-    assert divide_vowels_consonants("  ")[1] == ""
-    assert divide_vowels_consonants("a  ")[0] == "a"
-    assert divide_vowels_consonants("a  ")[1] == ""
+    result = divide_vowels_consonants("ciao")
+    assert result[0] == "iao"
+    assert result[1] == "c"
+
+def test_divide_vowels_consonants_empty():
+    """
+    Test the divide_vowels_consonants function
+    GIVEN: an empty string
+    WHEN: the function is called with an empty string
+    THEN: the function returns a tuple where both elements are empty strings
+    """
+    result = divide_vowels_consonants("")
+    assert result[0] == ""
+    assert result[1] == ""
+
+def test_divide_vowels_consonants_spaces():
+    """
+    Test the divide_vowels_consonants function
+    GIVEN: a string with spaces '  '
+    WHEN: the function is called with '  '
+    THEN: the function returns a tuple where both elements are empty strings
+    """
+    result = divide_vowels_consonants("  ")
+    assert result[0] == ""
+    assert result[1] == ""
+
+def test_divide_vowels_consonants_singleVowel():
+    """
+    Test the divide_vowels_consonants function
+    GIVEN: a vowel
+    WHEN: the function is called with a vowel
+    THEN: the function returns a tuple where the first element is that vowel and the second element is an empty string
+    """
+    result = divide_vowels_consonants("a")
+    assert result[0] == "a"
+    assert result[1] == ""
+
+def test_divide_vowels_consonants_singleConsonant():
+    """
+    Test the divide_vowels_consonants function
+    GIVEN: a consonant
+    WHEN: the function is called with a consonant
+    THEN: the function returns a tuple where the first element is an empty string and the second the consonant
+    """
+    result = divide_vowels_consonants("l")
+    assert result[0] == ""
+    assert result[1] == "l"
+
 
 
 
