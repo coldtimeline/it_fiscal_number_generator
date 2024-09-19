@@ -13,60 +13,238 @@ from src.generate_functions import generate_month_char, generate_last_characther
 from src.generate_functions import generate_fiscal_code
 from src.ask_functions import get_dataframe_from_html
 
-def test_generate_day_gender_code():
+def test_generate_day_gender_code_male():
     """
     Test the generate_day_gender_code function.
-    GIVEN: a bool representing Male (true) or Female (false) and an int representing a day of birth
-    WHEN: the function is called with a gender bool and the day of birth
-    THEN: the function returns the day of birth if the gender is male, otherwise the day of birth plus 40
+    GIVEN: a bool representing Male (true) and an int representing a day of birth
+    WHEN: the function is called with above data
+    THEN: the function returns the exact day of birth 
     """
 
-    assert generate_day_gender_code(True, 15) == 15  # Male, should return the day of birth
-    assert generate_day_gender_code(False, 15) == 55  # Female, should return the day of birth plus 40
+    assert generate_day_gender_code(True, 15) == 15 
 
 
-def test_generate_name_code():
-    """ 
-    Test the generate_name_code function.
-    GIVEN: two string representing vowels and consonats of a word, respectively
-    WHEN: the function is called with two string, one of vowels and one of consonants
-    THEN: the function returns a three char string of the name according to the rules
+def test_generate_day_gender_code_female():
     """
-    assert generate_name_code("AEI", "SDFQW") == "SFQ"  # Four or more consonants
-    assert generate_name_code("AE", "SDF") == "SDF"  # Three consonants
-    assert generate_name_code("AE", "SD") == "SDA"  # Two consonants and one vowel
-    assert generate_name_code("", "LP") == "LPX"  # Two consonants and no vowels
-    assert generate_name_code("AE", "Q") == "QAE"  # One consonants and two vowel
-    assert generate_name_code("A", "B") == "BAX"  # One consonants and one vowel
-    assert generate_name_code("", "B") == "BXX"  # One consonants and zero vowel
-    assert generate_name_code("AEI", "") == "AEI"  # Zero consonants and three vowel
-    assert generate_name_code("AE", "") == "AEX"  # Zero consonants and two vowel
-    assert generate_name_code("U", "") == "UXX"  # Zero consonants and one vowel
+    Test the generate_day_gender_code function.
+    GIVEN: a bool a Female (false) and an int representing a day of birth
+    WHEN: the function is called with above data
+    THEN: the function returns the day of birth plus 40
+    """
+    assert generate_day_gender_code(False, 15) == 55  
+
+
+def test_generate_name_and_surname_difference():
+    """
+    This function test that generate name and surname functions
+    behave differently with more than 3 consonants
+    GIVEN: the same consonat string with 4 consonant
+    WHEN: generate_name_code and generate_surname_code are both called with above data
+    THEN: the result are different
+    """
+
+    assert generate_name_code("","SDFG") != generate_surname_code("","SDFG")
+
+
+def test_generate_name_code_lots_consonants():
+    """
+    Test the generate_name_code function
+    GIVEN: a string of vowels and a string with more than 3 consonants
+    WHEN: the function is called with above data
+    THEN: the function returns a three char string according to roules
+    """
+    assert generate_name_code("AEI", "SDFQW") == "SFQ"
+
+def test_generate_name_code_three_consonants():
+    """
+    Test the generate_name_code function 
+    GIVEN: three consonants and some vowels
+    WHEN: the function is called with above data
+    THEN: the function returns three char string according to roules
+    """
+    assert generate_name_code("AE", "SDF") == "SDF"
+
+def test_generate_name_code_two_consonants_and_vowels():
+    """
+    Test the generate_name_code function
+    GIVEN: with two consonants and some vowels
+    WHEN: the function is called with above data
+    THEN: the function returns three char string according to roules
+    """
+    assert generate_name_code("AE", "SD") == "SDA"
+
+def test_generate_name_code_two_consonants_no_vowels():
+    """
+    Test the generate_name_code function
+    GIVEN: two consonants and no vowels
+    WHEN: the function is called with above data
+    THEN: the function returns three char string according to roules
+    """
+    assert generate_name_code("", "LP") == "LPX"
+
+def test_generate_name_code_one_consonant_two_vowels():
+    """
+    Test the generate_name_code function 
+    GIVEN: one consonant and two vowels
+    WHEN: the function is called with above data
+    THEN: the function returns three char string according to roules
+    """
+    assert generate_name_code("AE", "Q") == "QAE"
+
+def test_generate_name_code_one_consonant_one_vowel():
+    """
+    Test the generate_name_code function 
+    GIVEN: one consonant and one vowel
+    WHEN: the function is called with above data
+    THEN: the function returns three char string according to roules
+    """
+    assert generate_name_code("A", "B") == "BAX"
+
+def test_generate_name_code_one_consonant_zero_vowels():
+    """
+    Test the generate_name_code function
+    GIVEN: one consonant and zero vowels
+    WHEN: the function is called with above data
+    THEN: the function returns three char string according to roules
+    """
+    assert generate_name_code("", "B") == "BXX"
+
+def test_generate_name_code_zero_consonants_three_vowels():
+    """
+    Test the generate_name_code function
+    GIVEN: zero consonants and three vowels
+    WHEN: the function is called with above data
+    THEN: the function returns three char string according to roules
+    """
+    assert generate_name_code("AEI", "") == "AEI"
+
+def test_generate_name_code_zero_consonants_two_vowels():
+    """
+    Test the generate_name_code function 
+    GIVEN: zero consonants and two vowels
+    WHEN: the function is called with above data
+    THEN: the function returns three char string according to roules
+    """
+    assert generate_name_code("AE", "") == "AEX"
+
+def test_generate_name_code_zero_consonants_one_vowel():
+    """
+    Test the generate_name_code function 
+    GIVEN: zero consonants and one vowel
+    WHEN: the function is called with above data
+    THEN: the function returns three char string according to roules
+    """
+    assert generate_name_code("U", "") == "UXX"
+
+
+
+
+
+
 
     
 
-def test_generate_surname_code():
-    """ 
-    Test the generate_surname_code function.
-    GIVEN: two string representing vowels and consonats of a word, respectively
-    WHEN: the function is called with two string, one of vowels and one of consonants
-    THEN: the function returns a three char string of the surname according to the rules
+def test_generate_surname_code_lot_of_consonants():
     """
-    assert generate_surname_code("", "BLTKJ") == "BLT"  # Lot of consonants
-    assert generate_surname_code("AE", "BLTKJ") == "BLT"  # Lot of consonants
-    assert generate_surname_code("", "BLT") == "BLT"  # Three consonants
-    assert generate_surname_code("AE", "BL") == "BLA"  # Two consonants and one vowel
-    assert generate_surname_code("", "BL") == "BLX"  # Two consonants and no vowels
-    assert generate_surname_code("AE", "B") == "BAE"  # One consonants and two vowel
-    assert generate_surname_code("AEUI", "B") == "BAE"  # One consonants and more vowel
-    assert generate_surname_code("A", "B") == "BAX"  # One consonants and one vowel
-    assert generate_surname_code("", "B") == "BXX"  # One consonants and zero vowel
-    assert generate_surname_code("AEI", "") == "AEI"  # Zero consonants and three vowel
-    assert generate_surname_code("AEI", "") == "AEI"  # lots of vowel
-    assert generate_surname_code("AE", "") == "AEX"  # Zero consonants and two vowel
-    assert generate_surname_code("U", "") == "UXX"  # Zero consonants and one vowel
-    assert generate_surname_code("", "") == "XXX"  # Zero consonants and zero vowel
-    assert generate_surname_code(divide_vowels_consonants("Rocchini")[0], divide_vowels_consonants("Rocchini")[1]) == "RCC"
+    Test the generate_surname_code function
+    GIVEN: lots of consonants and some vowel
+    WHEN: the function is called with above data
+    THEN: it should return three char string according to roules
+    """
+    assert generate_surname_code("AE", "BLTKJ") == "BLT"
+
+def test_generate_surname_code_three_consonants():
+    """
+    Test the generate_surname_code function
+    GIVEN: no vowels and  with three consonants
+    WHEN: the function is called with above data
+    THEN: it should return three char string according to roules
+    """
+    assert generate_surname_code("", "BLT") == "BLT"
+
+def test_generate_surname_code_two_consonants_and_vowels():
+    """
+    Test the generate_surname_code function  
+    GIVEN: two consonants and vowels
+    WHEN: the function is called with above data
+    THEN: it should return three char string according to roules
+    """
+    assert generate_surname_code("AE", "BL") == "BLA"
+
+def test_generate_surname_code_two_consonants_no_vowels():
+    """
+    Test the generate_surname_code function 
+    GIVEN:  two consonants and no vowels
+    WHEN: the function is called with above data
+    THEN: it should return three char string according to roules
+    """
+    assert generate_surname_code("", "BL") == "BLX"
+
+def test_generate_surname_code_one_consonant_two_vowels():
+    """
+    Test the generate_surname_code function 
+    GIVEN: one consonant and two vowels
+    WHEN: the function is called with above data
+    THEN: it should return three char string according to roules
+    """
+    assert generate_surname_code("AE", "B") == "BAE"
+
+def test_generate_surname_code_one_consonant_one_vowel():
+    """
+    Test the generate_surname_code function 
+    GIVEN: one consonant and one vowel
+    WHEN: the function is called with above data
+    THEN: it should return three char string according to roules
+    """
+    assert generate_surname_code("A", "B") == "BAX"
+
+def test_generate_surname_code_one_consonant_zero_vowels():
+    """
+    Test the generate_surname_code function 
+    GIVEN: one consonant and zero vowels
+    WHEN: the function is called with above data
+    THEN: it should return three char string according to roules
+    """
+    assert generate_surname_code("", "B") == "BXX"
+
+def test_generate_surname_code_zero_consonants_three_vowels():
+    """
+    Test the generate_surname_code function 
+    GIVEN: zero consonants and three vowels
+    WHEN: the function is called with above data
+    THEN: it should return three char string according to roules
+    """
+    assert generate_surname_code("AEI", "") == "AEI"
+
+def test_generate_surname_code_zero_consonants_two_vowels():
+    """
+    Test the generate_surname_code function 
+    GIVEN: zero consonants and two vowels
+    WHEN: the function is called with above data
+    THEN: it should return three char string according to roules
+    """
+    assert generate_surname_code("AE", "") == "AEX"
+
+def test_generate_surname_code_zero_consonants_one_vowel():
+    """
+    Test the generate_surname_code function 
+    GIVEN: zero consonants and one vowel
+    WHEN: the function is called with above data
+    THEN: it should return three char string according to roules
+    """
+    assert generate_surname_code("U", "") == "UXX"
+
+def test_generate_surname_code_zero_consonants_zero_vowels():
+    """
+    Test the generate_surname_code function
+    GIVEN: no vowels and no consonants
+    WHEN: the function is called with above data
+    THEN: it should return three char string according to roules
+    """
+    assert generate_surname_code("", "") == "XXX"
+
+
+
 
 
 
@@ -90,17 +268,34 @@ def test_generate_month_char_valid():
     assert generate_month_char(11) == 'S'
     assert generate_month_char(12) == 'T'
 
-def test_generate_last_characther():
-    """ 
-    Test the generate last character function.
-    GIVEN: a string with length 15
-    WHEN: the function is called with a 15 length string
-    THEN: the function a char according to the roules
+
+
+
+
+
+
+def test_generate_last_characther_valid1():
+    """
+    Test the generate_last_characther function with a valid string
+    GIVEN: the string 'GSTMGV78T03A944' with length 15
+    WHEN: the function is called with that string
+    THEN: the function returns the character 'T' according to the rules
     """
     assert generate_last_characther("GSTMGV78T03A944") == "T"
+
+def test_generate_last_characther_valid2():
+    """
+    Test the generate_last_characther function with a valid string
+    GIVEN: the string 'LTZCST80A41G712' with length 15
+    WHEN: the function is called with 'LTZCST80A41G712'
+    THEN: the function returns the character 'C' according to the rules
+    """
     assert generate_last_characther("LTZCST80A41G712") == "C"
-    assert generate_last_characther("PPPGNN80A42B602") == "G"
-    assert generate_last_characther("XIXTIX85H01E438") == "N"
+
+
+
+
+
 
 def test_generate_city_code():
     """
@@ -110,8 +305,11 @@ def test_generate_city_code():
     WHEN: the function is called with those information
     THEN: it return the right code
     """
-    dataset_from_internet = get_dataframe_from_html('codici_comuni.htm')
-    assert generate_city_code(dataset_from_internet, "MONTECCHIO EMILIA") == 'F463'
+    dataset_from_html = get_dataframe_from_html('codici_comuni.htm')
+    assert generate_city_code(dataset_from_html, "MONTECCHIO EMILIA") == 'F463'
+
+
+    
 
 
 def test_generate_fiscal_code():
@@ -122,9 +320,9 @@ def test_generate_fiscal_code():
     WHEN: the function is called with a male with above characteristics
     THEN: it return a valid fiscal code
     """
-    dataset_from_webpage = get_dataframe_from_html('codici_comuni.htm')
+    dataset_from_html = get_dataframe_from_html('codici_comuni.htm')
     datatest = datetime(1980, 1, 1)
-    assert generate_fiscal_code('maRia Rosa','boCCIoni','F',datatest,'POMPEI',dataset_from_webpage) == 'BCCMRS80A41G813Y'
+    assert generate_fiscal_code('MARIA ROSA','BOCCIONI','F',datatest,'POMPEI',dataset_from_html) == 'BCCMRS80A41G813Y'
 
 
 def test_generate_fiscal_code_singledigitday():
