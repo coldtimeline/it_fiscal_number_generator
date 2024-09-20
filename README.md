@@ -40,8 +40,8 @@ In fact, the first three character are a combination of letters of the surname, 
         You can also modify the name of the file and run the program with that file name.
 ## Usage
 
-After you run the program, it will ask to you your name, surname, gender, date and place of birth.
-Then it return the string of your fiscal code. The fiscal can be calculated only for people born in Italy.
+After you run the program, if no .ini file is given, it will ask to you your name, surname, gender, date and place of birth.
+Then it return the string of your fiscal code. In this program the fiscal can be calculated only for people born in Italy.
 
 ### IMPORTANT INPUT INFORMATION
 1. The name must be entered using only ASCII character, no punctation and digits are allowed.
