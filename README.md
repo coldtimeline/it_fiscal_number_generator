@@ -36,6 +36,8 @@ In fact, the first three character are a combination of letters of the surname, 
          ```bash
          python main.py --config person.ini
          ```
+        The data you write in the person.ini file should respect INPUT INFORMATION given below.
+        You can also modify the name of the file and run the program with that file name.
 ## Usage
 
 After you run the program, it will ask to you your name, surname, gender, date and place of birth.
