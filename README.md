@@ -27,11 +27,15 @@ In fact, the first three character are a combination of letters of the surname, 
     ```bash
     pip install -r requirements.txt
     ```
-4. Run the program using
-    ```bash
-    python main.py
-    ```
-
+4. Run the program:
+    - you can simply run the program with data from CL, using:
+         ```bash
+         python main.py
+         ```
+    - you can modify the person.ini file with your data and then run the program with that data:
+         ```bash
+         python main.py --config person.ini
+         ```
 ## Usage
 
 After you run the program, it will ask to you your name, surname, gender, date and place of birth.
