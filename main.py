@@ -8,6 +8,18 @@ from src.ask_functions import get_place_of_birth
 from src.generate_functions import generate_fiscal_code
 
 def run_program_from_cl():
+    """
+    Runs the program from the command line, prompting the user for personal information
+    and generating a fiscal code based on the provided data.
+
+    The function performs the following steps:
+    1. Prompts the user to input their name, surname, gender, date of birth, and place of birth.
+    2. Retrieves a dataset of place codes from an HTML file.
+    3. Generates and prints the fiscal code based on the provided information and dataset.
+
+    It catches and prints any exceptions that occur during the execution of the function.
+    """
+
     try:
       name = get_name()
       surname = get_surname()
@@ -21,7 +33,21 @@ def run_program_from_cl():
     except Exception as e:
       print(e)
 
-def run_program_from_ini_file(file_path): 
+def run_program_from_ini_file(file_path):
+    """
+    Runs the program using configuration from an INI file, 
+    and generating a fiscal code based on the provided data.
+
+    This function performs the following steps:
+    1. Reads the configuration from the specified INI file.
+    2. Retrieves personal information from the INI file.
+    3. Retrieves a dataset of place codes from an HTML file.
+    4. Generates and prints the fiscal code based on the provided information and dataset.
+    It catches and prints any exceptions that occur during the execution of the function.
+
+    Args:
+        file_path (str): The path to the INI file containing the configuration.
+    """ 
     try:
       config = configparser.ConfigParser()
       config.read(file_path)

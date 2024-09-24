@@ -1,5 +1,5 @@
 # it_fiscal_number_generator
-This repository contains a python code to calculate italian fiscal code for people born in Italy
+This repository contains a python code that calculate italian fiscal code for people born in Italy
 
 ## Description
 The fiscal code is a combination of 16 characther and digits and it is used to uniquely identify each person with the public administration. It is usually assigned at birth.
