@@ -1,5 +1,6 @@
 import sys
 import os
+import pytest
 import pandas as pd
 from datetime import datetime
 
@@ -136,6 +137,16 @@ def test_generate_name_code_zero_consonants_one_vowel():
     """
     assert generate_name_code("U", "") == "UXX"
 
+def test_generate_name_code_empty():
+    """
+    Test the generate_name_code function 
+    GIVEN: empty string for consonant and vowels
+    WHEN: the function is called with above data
+    THEN: the function raises ValueError
+    """
+    with pytest.raises(ValueError, match="Invalid input name"):
+        generate_name_code("","")
+
 
 
 
@@ -268,6 +279,15 @@ def test_generate_month_char_valid():
     assert generate_month_char(11) == 'S'
     assert generate_month_char(12) == 'T'
 
+def test_generate_month_char_invalid():
+    """ 
+    Test the generate_month_char function.
+    GIVEN: an invalid number
+    WHEN: the function is called with an invalid integer
+    THEN: the function raises ValueError
+    """
+    with pytest.raises(ValueError, match="Month must be between 1 and 12 inclusive."):
+        generate_month_char(13)
 
 
 
@@ -292,6 +312,16 @@ def test_generate_last_characther_valid2():
     """
     assert generate_last_characther("LTZCST80A41G712") == "C"
 
+def test_generate_last_characther_shorter():
+    """
+    Test the generate_last_characther function with an invalid string
+    GIVEN: a shorter input string, with 14 character
+    WHEN: the function is called with that string
+    THEN: the function raises ValueError
+    """
+
+    with pytest.raises(ValueError, match="Input code must have 15 characters"):
+        generate_last_characther("GSTMGV78T3A944")
 
 
 
@@ -316,9 +346,9 @@ def test_generate_fiscal_code():
     """
     This function test generate_fiscal_code when valid person is given
 
-    GIVEN: a male with a one digit day of birth
-    WHEN: the function is called with a male with above characteristics
-    THEN: it return a valid fiscal code
+    GIVEN: place dataframe, a datetime object and data of a person
+    WHEN: the function is called with a person with above characteristics
+    THEN: it return a valid fiscal code according to roules
     """
     dataset_from_html = get_dataframe_from_html('codici_comuni.htm')
     datatest = datetime(1980, 1, 1)
@@ -330,9 +360,9 @@ def test_generate_fiscal_code_singledigitday():
     This function test generate_fiscal_code when a male with a sigle 
     digit day of birth
 
-    GIVEN: a male with a one digit day of birth
+    GIVEN: a male with a one digit day of birth, a place dataframe
     WHEN: the function is called with a male with above characteristics
-    THEN: it return a valid fiscal code
+    THEN: it return a valid fiscal code according to roules
     """
 
     dataset_from_webpage = get_dataframe_from_html('codici_comuni.htm')
