@@ -15,7 +15,7 @@ The fiscal code depends on:
 In fact, the first three character are a combination of letters of the surname, followed by three characters representing the name, then two digits representing the year of birth, a char representing the month of birth, two digits that simultaneusly represent the day of birth and the gender of a person, then four character representing the city (italian: comune) of birth and eventually a control character. You can find the roules in references.
 ## Installation
 
-1. From terminal, go to the folder where you want to clone the repository and clone the repository:
+1. From terminal, go to the folder where you want to clone the repository and clone it:
     ```bash
     git clone https://github.com/coldtimeline/it_fiscal_number_generator.git
     ```
@@ -28,7 +28,7 @@ In fact, the first three character are a combination of letters of the surname, 
     pip install -r requirements.txt
     ```
 4. Run the program:
-    - you can simply run the program with data from CL, using:
+    - you can simply run the program with data you'll enter from CL, using:
          ```bash
          python main.py
          ```
