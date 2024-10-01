@@ -1,3 +1,4 @@
+import os
 import argparse
 import configparser
 
@@ -39,7 +40,7 @@ def run_program_from_ini_file(file_path):
     and generating a fiscal code based on the provided data.
 
     This function performs the following steps:
-    1. Reads the configuration from the specified INI file.
+    1. Reads the configuration from the specified INI file, if present.
     2. Retrieves personal information from the INI file.
     3. Retrieves a dataset of place codes from an HTML file.
     4. Generates and prints the fiscal code based on the provided information and dataset.
@@ -49,6 +50,13 @@ def run_program_from_ini_file(file_path):
         file_path (str): The path to the INI file containing the configuration.
     """ 
     try:
+      #check if the ini file exists
+      #it should be done because if the file doesn't exists
+      #the function config.read() does't rise an error but an empty list
+      if not os.path.exists(file_path):
+         print("File is not present")
+         return
+      
       config = configparser.ConfigParser()
       config.read(file_path)
 
